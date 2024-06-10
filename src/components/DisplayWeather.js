@@ -1,5 +1,11 @@
 import React from "react";
 import "./displayweather.css";
+
+/**
+ * Component to display weather information.
+ * @param {Object} props - The props object containing the weather data.
+ * @returns {JSX.Element} - The JSX element representing the weather display.
+ */
 function DisplayWeather(props) {
   const { data } = props;
   const iconurl =
@@ -11,21 +17,25 @@ function DisplayWeather(props) {
       {data.cod != 404 ? (
         <React.Fragment>
           <div className="maincard">
+            {/* Weather location and title */}
             <span className="cardtitle">
               {data.name} , {data.sys.country}. Weather
             </span>
+            {/* Current time */}
             <span className="cardsubtitle">
               As of {new Date().toLocaleTimeString()}
             </span>
 
+            {/* Current temperature */}
             <h1 className="sahi">
               {" "}
               {Math.floor(data.main.temp - 273.15)}
               <sup>o</sup>
               C
             </h1>
-             {/* <span className="weather-main">{data.weather[0].main}</span> */}
+            {/* Weather icon */}
             <img className="weather-icon" src={iconurl} alt="" srcset="" />
+            {/* Weather description */}
             <span className="weather-description">
               {" "}
               {data.weather[0].description}
@@ -36,6 +46,7 @@ function DisplayWeather(props) {
               <table>
                 <tr>
                   <td>
+                    {/* High and low temperature */}
                     <h4>High/Low🔅</h4>
                   </td>
                   <td>
@@ -47,6 +58,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Humidity */}
                     <h4>Humidity🥵</h4>
                   </td>
                   <td>
@@ -55,6 +67,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Pressure */}
                     <h4>Pressure🪨</h4>
                   </td>
                   <td>
@@ -63,6 +76,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Visibility */}
                     <h4>Visibility👀</h4>
                   </td>
                   <td>
@@ -76,6 +90,7 @@ function DisplayWeather(props) {
               <table>
                 <tr>
                   <td>
+                    {/* Wind speed */}
                     <h4>Wind💨</h4>
                   </td>
                   <td>
@@ -84,6 +99,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Wind direction */}
                     <h4>Wind Direction🌬️</h4>
                   </td>
                   <td>
@@ -95,6 +111,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Sunrise time */}
                     <h4>Sunrise🌅</h4>
                   </td>
                   <td>
@@ -105,6 +122,7 @@ function DisplayWeather(props) {
                 </tr>
                 <tr>
                   <td>
+                    {/* Sunset time */}
                     <h4>Sunset🌇</h4>
                   </td>
                   <td>
@@ -119,6 +137,7 @@ function DisplayWeather(props) {
         </React.Fragment>
       ) : (
         <div className="maincard">
+          {/* Error message */}
           <h2>{data.message}</h2>
         </div>
       )}

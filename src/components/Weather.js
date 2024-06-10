@@ -4,20 +4,31 @@ import { useContext } from "react";
 import "./weather.css";
 import { ThemeContext } from "./AppContextProvider";
 import Button from "./Button";
+/**
+ * Weather component displays a weather forecast form and fetches weather data from an API.
+ */
 function Weather() {
+  // Use the ThemeContext to access the current theme and toggle function
   const val = useContext(ThemeContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(val);
+
+  // Initialize state variables
   const [weather, setWeather] = useState([]);
   const [form, setForm] = useState({
     city: "",
     country: "",
   });
 
+  // API key for OpenWeatherMap API
   const APIKEY = "9286b547ac677704de8851b9cfd85943";
+
+  /**
+   * Fetches weather data from the OpenWeatherMap API based on the form inputs.
+   * @param {Event} e - The form submit event.
+   */
   async function weatherData(e) {
     e.preventDefault();
-    if (form.city == "") {
+    if (form.city === "") {
       alert("Add values");
     } else {
       const data = await fetch(
@@ -30,17 +41,22 @@ function Weather() {
     }
   }
 
+  /**
+   * Updates the form state based on the input field changes.
+   * @param {Event} e - The input change event.
+   */
   const handleChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
 
-    if (name == "city") {
+    if (name === "city") {
       setForm({ ...form, city: value });
     }
-    if (name == "country") {
+    if (name === "country") {
       setForm({ ...form, country: value });
     }
   };
+
   return (
     <div
       className="weather"
@@ -68,23 +84,17 @@ function Weather() {
         <button className="getweather" onClick={(e) => weatherData(e)}>
           Search
         </button>
-
-        
       </form>
-        
-      <Button onClick={toggleTheme} btnText="Switch Modes" />  
-      
 
-      {/* {console.log(weather)} */}
-      {weather.data != undefined ? (
-        
+      {/* Button component to toggle theme */}
+      <Button onClick={toggleTheme} btnText="Switch Modes" />
+
+      {/* Display weather data if available */}
+      {weather.data !== undefined ? (
         <div>
-          
           <DisplayWeather data={weather.data} />
         </div>
       ) : null}
-
-      
     </div>
   );
 }
