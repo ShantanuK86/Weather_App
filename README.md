@@ -37,3 +37,4 @@ The application uses the OpenWeatherMap API to fetch weather data. The data is t
 - The application does not provide a detailed forecast, only the current weather conditions.
 
 ## LIVE LINK
+https://weatherapik48.netlify.app
